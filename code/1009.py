@@ -25,28 +25,12 @@ for i in range(T):
             print((n ** 4) % 10 % 10 % 10)        
         else:
             print((n ** m) % 10 % 10 % 10)
-            
-''' 분산 처리
-나머지의 값을 알아내고 그에 맞는 경우로 나눠야함..
-0	10
-1	1
-2	2 4 8 6
-3	9 7 1
-4	4 6
-5	5
-6	6
-7	9 3 1
-8	8 4 2 6
-9	9 1
-'''
 
-# 시간 초과 뜨는 코드
-import sys
-
-T = int(sys.stdin.readline())
+''' 시간 초과
 
 for i in range(T):
     n, m = map(int, sys.stdin.readline().split())
 
     result = pow(n, m) % 10
     print(result)
+'''

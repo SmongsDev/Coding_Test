@@ -2,6 +2,7 @@ s = input()
 
 count = {}
 
+# 다음에는 counter 모듈을 사용하자!! <- 문자열의 알파벳 글자 수를 세어주는 모듈
 for i in s.lower():
     count[i] = count.get(i, 0) + 1
 

@@ -1,6 +1,5 @@
 def solution(id_list, report, k):
     answer = []
-    resutlt = []
     dic = {}
     _dic = {}
     re = [i.split(" ") for i in set(report)]

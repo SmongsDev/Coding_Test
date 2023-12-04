@@ -6,4 +6,4 @@ for i in range(1,len(arr)):
         dp.append(arr[i])
 print(len(dp))
 
-# https://lgphone.tistory.com/129
+# https://lgphone.tistory.com/129 

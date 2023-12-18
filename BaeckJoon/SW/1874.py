@@ -1,26 +1,20 @@
 n = int(input())
+idx = 0
 stack = []
-now = 1
 result = []
-check = False
-for i in range(1, n+1):
+
+for _ in range(n):
     put = int(input())
-    if now < put:
-        for j in range(now,put+1):
-            stack.append(now)
-            result.append('+')
-            now += 1
-        result.append('-')
+
+    while put > idx:
+        idx += 1
+        stack.append(idx)
+        result.append('+')
+    
+    if stack[-1] == put:
         stack.pop()
+        result.append('-')
     else:
-        if put in stack:
-            for j in range(stack[-1]-put):
-                stack.pop()
-                result.append('-')
-        else:
-            check = True
-if check:
-    print('NO')
-else:
-    for i in result:
-        print(i)
+        print('NO')
+        exit(0)
+print(*result, sep='\n')

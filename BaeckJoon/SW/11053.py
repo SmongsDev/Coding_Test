@@ -1,9 +1,9 @@
 n = int(input())
 arr = list(map(int, input().split()))
-dp = [arr[0]]
-for i in range(1,len(arr)):
-    if arr[i] > dp[-1]:
-        dp.append(arr[i])
-print(len(dp))
 
-# https://lgphone.tistory.com/129 
+dp = [1] * n
+for i in range(n):
+    for j in range(i+1,n):
+        if arr[j] > arr[i]:
+            dp[j] = max(dp[j], dp[i]+1)
+print(max(dp))

@@ -1,19 +1,17 @@
-import sys; input = sys.stdin.readline
 from heapq import heappush, heappop
+import sys; input = sys.stdin.readline
+INF = int(1e9)
 n, m = map(int,input().split())
 graph = [[] for _ in range(n+1)]
-for i in range(m):
-    a,b,c = map(int, input().split())
-    graph[a].append((c,b))
-    graph[b].append((c,a))
-for i in range(m):
-    graph[i].sort(reverse=True)
-
+for _ in range(m):
+    a, b, c = map(int, input().split())
+    graph[a].append((b,c))
+    graph[b].append((a,c))
 start, end = map(int, input().split())
-
-weights = [0] * (n+1)
 h = []
-heappush(h,(0, start))
+distance = [-INF] * (n+1)
+heappush(h, (0,start))
+distance[start] = 0
 while h:
     weight, now = heappop(h)
     weight *= -1
@@ -21,12 +19,11 @@ while h:
     if now == end:
         print(weight)
         break
-    if weights[now] > weight:
+
+    if distance[now] > weight:
         continue
-    for w, next in graph[now]:
-        if weight == 0:
-            weights[next] = w
-            heappush(h, (-weights[next], next))
-        if weights[next] < w and weights[next] < weight:
-            weights[next] = min(w, weight)
-            heappush(h,(-weights[next], next))
+    for nex, w in graph[now]:
+        max_weight = max(w, weight)
+        if distance[nex] < max_weight:
+            distance[nex] = max_weight
+            heappush(h,(-max_weight, nex))

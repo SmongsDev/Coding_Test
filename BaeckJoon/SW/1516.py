@@ -1,5 +1,6 @@
 import sys; input = sys.stdin.readline
 from collections import deque
+from copy import deepcopy
 n = int(input())
 indegree = [0] * (n+1)
 graph = [[] for _ in range(n+1)]
@@ -12,7 +13,7 @@ for i in range(1,n+1):
         indegree[i] += 1
 
 def topology_sort():
-    result = [0] * (n+1)
+    result = deepcopy(time)
     q = deque()
 
     for i in range(1, n+1):
@@ -21,11 +22,9 @@ def topology_sort():
     
     while q:
         now = q.popleft()
-        
-        result[now] += time[now]
         for i in graph[now]:
             indegree[i] -= 1
-            result[i] = max(result[i], result[now])
+            result[i] = max(result[i], result[now] + time[i])
             if indegree[i] == 0:
                 q.append(i)                
     for i in result[1:]:

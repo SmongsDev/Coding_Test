@@ -22,3 +22,6 @@ https://www.acmicpc.net/search#q=SW%EB%A7%88%EC%97%90%EC%8A%A4%ED%8A%B8%EB%A1%9C
 
 추가 항목
 * https://www.acmicpc.net/category/detail/3260
+
+추천 문제 블로그
+* https://devjeong.com/algorithm/algorithm-1/

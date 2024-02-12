@@ -1,10 +1,10 @@
-from itertools import combinations
+import sys; input = sys.stdin.readline
+from itertools import combinations 
 n, s = map(int,input().split())
-nums = list(map(int, input().split()))
-
-cnt = 0
+arr = list(map(int,input().split()))
+res = 0
 for i in range(1,n+1):
-    for j in combinations(nums,i):
-        if sum(j) == s:
-            cnt += 1
-print(cnt)
+    for coms in list(combinations(arr,i)):
+        if sum(coms) == s:
+            res += 1
+print(res)

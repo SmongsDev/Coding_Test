@@ -10,15 +10,15 @@ for i in range(n):
 def bfs(start):
     q = deque()
     q.append((start, 0))
-    visited = [-1] * (n+1)
-    visited[start] = 0
+    visited = [False] * (n+1)
+    visited[start] = True
     res = [0, 0]
     while q:
         now, dist = q.popleft()
         for nex, d in trees[now]:
-            if visited[nex] == -1:
+            if visited[nex] == False:
                 cost = d + dist
-                visited[nex] = cost
+                visited[nex] = True
                 q.append((nex, cost))
                 if res[1] < cost:
                     res[0] = nex

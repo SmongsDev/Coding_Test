@@ -1,17 +1,17 @@
 import sys; input = sys.stdin.readline
-k, n = map(int,input().split())
-lans = [int(input()) for _ in range(k)]
+n, m = map(int,input().split())
+woods = list(map(int,input().split()))
 
 res = 0
 start = 1
-end = max(lans)
+end = max(woods)
 while start <= end:
     mid = (start + end) // 2
-    cnt = 0
-    for lan in lans:
-        cnt += lan // mid
+    length = 0
+    for wood in woods:
+        length += wood - mid if wood > mid else 0
     
-    if cnt >= n:
+    if length >= m:
         res = mid
         start = mid + 1
     else:

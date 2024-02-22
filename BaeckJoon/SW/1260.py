@@ -1,63 +1,33 @@
 from collections import deque
-import sys
-
-input = sys.stdin.readline
-
-n, m, v = map(int, input().split())
-
-graph = [ [] for _ in range(n+1) ]
-for i in range(m):
-    x, y = map(int, input().split())
-    graph[x].append(y)
-    graph[y].append(x)
-
-for i in range(m):
+n, m, v = map(int,input().split())
+graph = [[] for _ in range(n+1)]
+for _ in range(m):
+    a, b = map(int,input().split())
+    graph[a].append(b)
+    graph[b].append(a)
+for i in range(n+1):
     graph[i].sort()
 
-# dfs_visited = [False] * (n+1)
-bfs_visited = [False] * (n+1)
-
-# def dfs(start):
-#     if not graph[v]:
-#         return
-
-#     dfs_visited[start] = True
-#     print(start, end=' ')
-#     for i in graph[start]:
-#         if not dfs_visited[i]:
-#             dfs(i)
-
+visited = [False] * (n+1)
 def dfs(start):
-    if not graph[v]:
-        return
-    stack = deque([start])
-    visited = []
-    while stack:
-        now = stack.pop()
-        if now not in visited:
-            visited.append(now)
-            tmp = []
-            for i in graph[now]:
-                if i not in visited:
-                    tmp.append(i)
-            tmp.sort(reverse=True)
-            stack += tmp
-
-    print(' '.join(map(str, visited)))
+    print(start, end=' ')
+    visited[start] = True
+    for i in graph[start]:
+        if not visited[i]:
+            dfs(i)
+dfs(v)
+print()
 
 def bfs(start):
-    if not graph[v]:
-        return
-    que = deque([start])
-    bfs_visited[start] = True
+    visited = [False] * (n+1)
+    visited[start] = True
+    q = deque([start])
+    while q:
+        now = q.popleft()
+        print(now, end=' ')
 
-    while que:
-        next = que.popleft()
-        print(next, end=' ')
-        for i in graph[next]:
-            if not bfs_visited[i]:
-                que.append(i)
-                bfs_visited[i] = True
-
-dfs(v)
+        for i in graph[now]:
+            if not visited[i]:
+                q.append(i)
+                visited[i] = True
 bfs(v)

@@ -1,21 +1,22 @@
 import sys; input = sys.stdin.readline
-n,m = map(int,input().split())
-moneys = [ int(input()) for _ in range(n) ]
+n, m = map(int,input().split())
+moneys = [int(input()) for _ in range(n)]
 
+res = 0
 start = min(moneys)
 end = sum(moneys)
 while start <= end:
     mid = (start + end) // 2
-    charges = mid
+    charge = mid
     cnt = 1
-    for i in moneys:
-        if charges < i:
+    for money in moneys:
+        if charge < money:
             cnt += 1
-            charges = mid
-        charges -= i
+            charge = mid
+        charge -= money
     if cnt > m or mid < max(moneys):
         start = mid + 1
     else:
         end = mid - 1
-        result = mid
-print(result)
+        res = mid
+print(res)

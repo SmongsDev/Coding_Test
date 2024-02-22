@@ -1,17 +1,15 @@
+import sys; input = sys.stdin.readline
 from collections import deque
-MAX = 10 ** 5
-n, k = map(int, input().split())
-d = [0] * (MAX+1)
+n, k = map(int,input().split())
+distance = [0] * 100001
 
-def bfs():
-    que = deque([n])
-    while que:
-        x = que.popleft()
-        if x == k:
-            print(d[x])
-            break
-        for nx in [x-1, x+1, x*2]:
-            if 0 <= nx <= MAX and not d[nx]:
-                d[nx] = d[x] + 1
-                que.append(nx)
-bfs()
+q = deque([n])
+while q:
+    now = q.popleft()
+    if now == k:
+        print(distance[k])
+        break
+    for i in [now-1,now+1, now*2]:
+        if 0 <= i < 100001 and distance[i] == 0:
+            q.append(i)
+            distance[i] = distance[now] + 1
